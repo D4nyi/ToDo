@@ -82,6 +82,17 @@ public class AddToDoActivity extends AppCompatActivity {
                 .putExtra(CalendarContract.Events.AVAILABILITY, availability)
                 .putExtra(CalendarContract.Events.HAS_ALARM, true);
 
+      /*  FileOutputStream outputStream;
+        String
+        try {
+            getApplicationContext();
+            outputStream = openFileOutput("mytodos.json", MODE_PRIVATE);
+            outputStream.write(fileContents.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
         startActivity(intent);
     }
 

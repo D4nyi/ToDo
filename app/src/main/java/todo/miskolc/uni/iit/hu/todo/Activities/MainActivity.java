@@ -4,19 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
+import android.util.Log;
 
-import todo.miskolc.uni.iit.hu.todo.Listeners.RecyclerItemClickListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+import todo.miskolc.uni.iit.hu.todo.Models.ToDoList;
 import todo.miskolc.uni.iit.hu.todo.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected RecyclerView recyclerView;
-
+    private ToDoList todos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +32,24 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        recyclerView = findViewById(R.id.todos_recycler_view);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), (view, position) -> {
-            Intent intent = new Intent(MainActivity.this, AddToDoActivity.class);
-            intent.putExtra(AddToDoActivity.TODO_POSITION, position);
-            startActivity(intent);
-            Toast.makeText(getApplicationContext(), "Meg kéne nyitni a naptárat!", Toast.LENGTH_LONG).show();
-        }));
+        File file = new File(getApplicationContext().getFilesDir(), "mytodos.json");
+        todos = new ToDoList();
+
+        StringBuilder sb = new StringBuilder();
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+                sb.append('\n');
+            }
+            br.close();
+        } catch (IOException e) {
+            Log.e("File Read", e.getMessage(), e);
+        }
+
+        todos.fromJSON(sb.toString());
     }
 }
