@@ -175,4 +175,6 @@
     <string name="duration">Duration</string>
     <string name="start">Start</string>
     <string name="end">End</string>
+    <string name="my_title">My Title</string>
+    <string name="todo">TODO</string>
 </resources>

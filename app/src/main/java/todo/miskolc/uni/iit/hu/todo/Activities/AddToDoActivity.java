@@ -1,4 +1,4 @@
-package todo.miskolc.uni.iit.hu.todo;
+package todo.miskolc.uni.iit.hu.todo.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,10 +16,13 @@ import android.widget.Spinner;
 import java.util.Calendar;
 import java.util.Date;
 
+import todo.miskolc.uni.iit.hu.todo.R;
+
 public class AddToDoActivity extends AppCompatActivity {
 
+    public static final String TODO_POSITION = "TodoPosition";
     private static final String[] paths = {"Busy", "Free", "Tentative"};
-    private int availability = 1; //0 -> Busy, 1 -> Free, 2 -> Tentative
+    private Availability availability = Availability.Free;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +37,17 @@ public class AddToDoActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                availability = position;
+
+                try {
+                    availability.setCode(position);
+                } catch (IllegalArgumentException e) {
+                    availability.setCode(Availability.Busy.getCode());
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                availability = 1;
+                availability.setCode(1);
             }
         });
     }
