@@ -60,7 +60,8 @@ public class MainActivity extends BaseActivity {
             titles[i] = todos.getTodos().get(i).getTitle();
         }
 
-        adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, titles);
+
+        adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.custom_listview_layout, titles);
         listView.setAdapter(adapter);
     }
 }

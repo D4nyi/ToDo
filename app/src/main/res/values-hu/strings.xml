@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ToDo</string>
+
+    <string name="description">Leírás</string>
+    <string name="title">Cím</string>
+    <string name="save">Mentés</string>
+    <string name="place">Hely</string>
+    <string name="new_york">Budapest</string>
+
+    <string name="save_to_calendar">Mentés a naptárba</string>
+    <string name="start">Kezdés</string>
+    <string name="end">Vége</string>
+    <string name="pick_start_date">-tól(2019/01/01)</string>
+    <string name="pick_end_date">-ig(2019/01/01)</string>
+    <string name="date">Dátom</string>
+</resources>
