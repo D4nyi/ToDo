@@ -1,4 +1,4 @@
-package todo.miskolc.uni.iit.hu.todo.Models;
+package todo.miskolc.uni.iit.hu.todo.models;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -17,18 +17,23 @@ public class ToDoList {
     }
 
     @Contract(pure = true)
-    public static List<ToDoItem> getTodos() {
+    public List<ToDoItem> getTodos() {
         return todos;
     }
 
     public String toJSON() {
-        return new GsonBuilder().create().toJson(this, ToDoItem.class);
+        Type listType = new TypeToken<List<ToDoItem>>() {
+        }.getType();
+        return new GsonBuilder().create().toJson(todos, listType);
     }
 
     public List<ToDoItem> fromJSON(String json) {
         Type collectionType = new TypeToken<List<ToDoItem>>() {
         }.getType();
-        todos = new GsonBuilder().create().fromJson(json, collectionType);
+        List<ToDoItem> temp = new GsonBuilder().create().fromJson(json, collectionType);
+        if (temp != null) {
+            todos = temp;
+        }
         return todos;
     }
 }

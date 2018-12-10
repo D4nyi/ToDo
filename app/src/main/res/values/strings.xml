@@ -177,4 +177,7 @@
     <string name="end">End</string>
     <string name="my_title">My Title</string>
     <string name="todo">TODO</string>
+    <string name="pick_start_date">Pick Start Date</string>
+    <string name="date">Date</string>
+    <string name="pick_end_date">Pick End Date</string>
 </resources>

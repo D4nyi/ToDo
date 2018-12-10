@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Activities.AddToDoActivity">
+    tools:context=".activities.AddToDoActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -109,5 +109,7 @@
                     android:ems="10" />
             </RelativeLayout>
         </RelativeLayout>
+
     </ScrollView>
+
 </android.support.design.widget.CoordinatorLayout>
